@@ -1,19 +1,20 @@
 const mongoose = require("mongoose");
 const express = require("express");
-const {evenodd} = require("./Controller/usercontroller")
+const routes = require("./routes/userroutes")    
 
-const app = express();
+const app = express()
+app.use(express.json())
 
 const port = 5000;
 
-const mogourl =   "mongodb+srv://ujjwalkamboj001_db_user:Q8911DoUl9TuI0Cl@ujjwal.opys1ir.mongodb.net/?appName=Ujjwal"
+const mogourl =  "mongodb+srv://sanjay:" 
 
 mongoose.connect(mogourl)
 
-.then(() => console.log(`mongo db connect `))
-.catch((e) => console.log(`mongo db error${e}`))
+.then(() => {console.log(`mongo db connect `)})
+.catch((e) =>{console.log(`mongo db error${e}`)})
 
+app.use("/", routes)
 
 app.listen(port, () => {console.log(`Server is running on port ${port}`)})
 
-console.log(evenodd(2));
